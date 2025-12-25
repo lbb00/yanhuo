@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "assistant": "git@github.com:lbb00/sieg.git",
+    "knowledge": "git@github.com:lbb00/sieg.git"
+  }
+}
