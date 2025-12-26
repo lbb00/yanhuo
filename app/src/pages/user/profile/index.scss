@@ -1,0 +1,67 @@
+.profile-container {
+  padding: 20px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .avatar-placeholder {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #ddd;
+      margin-bottom: 10px;
+    }
+
+    .nickname {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .bio {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+
+    .stat-item {
+      text-align: center;
+      .num { font-weight: bold; display: block; font-size: 18px; }
+      .label { color: #999; font-size: 12px; }
+    }
+  }
+
+  .activity-section {
+    .title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .graph-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+
+      .day {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background: #ebedf0;
+
+        &.level-1 { background: #9be9a8; }
+        &.level-2 { background: #40c463; }
+        &.level-3 { background: #216e39; }
+      }
+    }
+  }
+}
+

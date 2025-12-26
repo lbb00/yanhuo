@@ -1,0 +1,96 @@
+.smart-container {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .input-section {
+    margin-bottom: 20px;
+
+    .label {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+
+      .input {
+        flex: 1;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+
+      .tag {
+        background: #e6f7ff;
+        color: #1890ff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .close {
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .search-btn {
+      background: #fa8c16;
+      color: white;
+      width: 100%;
+    }
+  }
+
+  .result-list {
+    flex: 1;
+
+    .recipe-card {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .info {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        .match-info {
+          font-size: 12px;
+          color: #666;
+          margin-top: 4px;
+        }
+      }
+    }
+
+    .empty-hint {
+      text-align: center;
+      color: #999;
+      margin-top: 50px;
+    }
+  }
+}
+

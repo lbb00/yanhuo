@@ -1,0 +1,35 @@
+.wiki-container {
+  padding: 20px;
+
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input {
+      flex: 1;
+      border: 1px solid #ddd;
+      padding: 5px;
+      border-radius: 4px;
+    }
+  }
+
+  .list {
+    .item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+
+      .name {
+        font-weight: bold;
+      }
+
+      .category {
+        color: #666;
+        font-size: 14px;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id // ULID
+  phone     String   @unique
+  nickname  String?
+  avatar    String?
+  bio       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  recipes   Recipe[]
+  posts     Post[]
+  comments  Comment[]
+
+  followedBy Follows[] @relation("following")
+  following  Follows[] @relation("follower")
+}
+
+// Wiki: Ingredients
+model Ingredient {
+  id          String   @id // ULID
+  name        String
+  category    String?  // e.g. "蔬菜", "肉类"
+  description String?
+  image       String?
+  nutrition   String?  // JSON string e.g. {"calories": 100, "protein": "5g"}
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  recipeItems RecipeItem[]
+}
+
+// Wiki: Recipes
+model Recipe {
+  id          String   @id // ULID
+  title       String
+  description String?
+  image       String?
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  steps       String   // JSON string: [{step: 1, text: "...", img: "..."}]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  ingredients RecipeItem[]
+  posts       Post[]
+}
+
+// Join table for Recipe <-> Ingredient
+model RecipeItem {
+  id           String     @id // ULID
+  recipeId     String
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  amount       String     // e.g. "200g", "1勺"
+}
+
+// Social: Post
+model Post {
+  id          String   @id // ULID
+  content     String?
+  images      String   // JSON string: ["url1", "url2"]
+  visibility  String   @default("PUBLIC") // PUBLIC, PRIVATE
+
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+
+  recipeId    String?
+  recipe      Recipe?  @relation(fields: [recipeId], references: [id])
+
+  comments    Comment[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Social: Comment
+model Comment {
+  id        String   @id // ULID
+  content   String
+
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id])
+
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+
+  parentId  String?  // For nested replies
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Social: Follows
+model Follows {
+  followerId  String
+  followingId String
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  following   User @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
+}

@@ -1,0 +1,44 @@
+.index {
+  padding: 20px;
+
+  .header {
+    margin-bottom: 40px;
+    text-align: center;
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      display: block;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+    }
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 40px;
+
+    .menu-item {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+      &:active {
+        background: #e9ecef;
+      }
+    }
+  }
+
+  .user-section {
+    text-align: center;
+  }
+}
+
